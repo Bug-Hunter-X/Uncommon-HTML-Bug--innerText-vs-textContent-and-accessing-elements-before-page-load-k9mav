@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug</title>
+</head>
+<body>
+  <div id="myDiv">
+    This text is visible.
+  </div>
+
+  <script>
+    //Incorrect way to change text content (common mistake)
+    document.getElementById("myDiv").textContent = "This text is changed.";
+    
+    // Correct way 
+    document.getElementById("myDiv").innerText = "This is correct way"; 
+    
+    //Another uncommon issue: attempting to access an element that hasn't loaded yet
+    //This can be solved using event listeners or checking for element existence
+    function changeTextAfterLoad(){
+       const element = document.getElementById("myDiv");
+       if(element){
+        element.textContent = "This will be changed after page load";
+       }else{
+        console.error("Element not found");
+       }
+    }
+    
+    window.addEventListener('load', changeTextAfterLoad);
+  </script>
+</body>
+</html>
